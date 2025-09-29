@@ -19,6 +19,7 @@ const moodGradients = {
   Romantic: "linear-gradient(135deg, #EE2727, #831A1A, #E54242)",
   Inspirational: "linear-gradient(135deg, #25A5A9, #216D72, #4B8E93)",
 };
+
 // 🧠 Simple keyword-based category detection
 function categorizeQuote(text) {
   const lower = text.toLowerCase();
@@ -43,7 +44,8 @@ export default function CategoriesPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const [favorites, setFavorites] = useState([]);
-const { mood } = useMood();
+  const { mood } = useMood();
+
   // ✍️ Manually added quotes
   const manualQuotes = [
     {
@@ -63,6 +65,7 @@ const { mood } = useMood();
   ];
 
   // 🚀 Fetch quotes from API + merge with manual quotes
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     async function fetchQuotes() {
       setLoading(true);
@@ -150,23 +153,23 @@ const { mood } = useMood();
       <Navbar mood={mood} />
 
       <main className="relative min-h-screen text-white px-6 pt-28 pb-16 overflow-hidden">
-          <div className="absolute inset-0 -z-10 h-full w-full"></div>
+        <div className="absolute inset-0 -z-10 h-full w-full"></div>
         {/* 🌌 Shared Mood Background */}
         <MoodBackground />
 
         {/* Title */}
-    <div className="text-center mb-12">
-  <h1
-    className={`${inter.className} text-5xl font-semibold mb-3 bg-gradient-to-r from-purple-500 via-pink-400 to-blue-400 bg-clip-text text-transparent drop-shadow-lg`}
-  >
-    Quote Categories
-  </h1>
-  <p
-    className={`${inter.className} text-lg text-white/90 max-w-md mx-auto`}
-  >
-    Explore quotes by category or search by author
-  </p>
-</div>
+        <div className="text-center mb-12">
+          <h1
+            className={`${inter.className} text-5xl font-semibold mb-3 bg-gradient-to-r from-purple-500 via-pink-400 to-blue-400 bg-clip-text text-transparent drop-shadow-lg`}
+          >
+            Quote Categories
+          </h1>
+          <p
+            className={`${inter.className} text-lg text-white/90 max-w-md mx-auto`}
+          >
+            Explore quotes by category or search by author
+          </p>
+        </div>
 
         {/* Search + Filters */}
         <div className="flex flex-wrap justify-center items-center gap-6 mb-12">
@@ -226,8 +229,9 @@ const { mood } = useMood();
                       <FaHeart />
                     </button>
                   </div>
+                  {/* ✅ FIXED: Escaped quotes */}
                   <p className={`${roboto.className} text-lg italic mb-3 leading-relaxed`}>
-                    "{q.quote}"
+                    {`"${q.quote}"`}
                   </p>
                   <p className={`${inter.className} text-sm opacity-70`}>
                     — {q.author}

@@ -41,7 +41,7 @@ export default function FavoritesPage() {
 
         {favorites.length === 0 ? (
           <p className="text-center text-lg opacity-80">
-            You haven’t added any favorites yet.
+            You haven&apos;t added any favorites yet.
           </p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -58,7 +58,7 @@ export default function FavoritesPage() {
                 <p
                   className={`${inter.className} text-lg italic mb-3 leading-relaxed mt-3`}
                 >
-                  "{q.quote}"
+                  &quot;{q.quote}&quot;
                 </p>
                 <p className="text-sm opacity-70">— {q.author}</p>
               </div>
